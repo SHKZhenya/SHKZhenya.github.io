@@ -1,0 +1,56 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Natural Mono Alt Regular"; 
+    src: url("19925.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+body {
+    height: auto;
+    background-color: #FDEED1;
+    font-size: 25px;
+    font-family: 'Natural Mono Alt Regular', serif;
+}
+
+
+#division {
+    display: flex;
+}
+
+.answers {
+    width: 50%;
+    padding: 5%;
+    background-color: #FDEED1;
+    font-size: 30px;
+    background-color: #B4B8AB;
+    border: none;
+}
+
+.answers:hover {
+    background: #CFD1C9;
+}
+
+.answers:active {
+    background: #808479;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Natural Mono Alt Regular', serif;
+}
+
+#b0, #b2 {
+    margin-right: 0.3%;
+    margin-top: 0.6%;
+}
+
+#b1, #b3 {
+    margin-left: 0.3%;
+    margin-top: 0.6%;
+}
