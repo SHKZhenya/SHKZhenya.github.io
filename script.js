@@ -11,12 +11,14 @@ var id = [0, 0, 0, 0];
 var f = [0, 0, 0, 0];
 var canvas;
 var aa, bb;
+var massiv = [];
 
 if (sessionStorage.getItem('x') != null) {
     x = sessionStorage.getItem('x').split(',');
     c = sessionStorage.getItem('c').split(',');
     s = sessionStorage.getItem('s').split(',');
     f = sessionStorage.getItem('s').split(',');
+    massiv = sessionStorage.getItem('massiv').split(',');
     yes = +sessionStorage.getItem('yes');
     no = +sessionStorage.getItem('no');
     ans = +sessionStorage.getItem('ans');
@@ -93,6 +95,36 @@ function Checker(check) {
         c[2] = code[x[2]];
         c[3] = code[x[3]];
         a = randint(0, 4);
+        while (massiv.includes(c[a]) == true) {
+            x[0] = randint(0, code.length);
+            x[1] = randint(0, code.length);
+            x[2] = randint(0, code.length);
+            x[3] = randint(0, code.length);
+            while (x[0] == x[1] || x[0] == x[2] || x[0] == x[3] || x[1] == x[2] || x[1] == x[3] || x[2] == x[3]) {
+                x[0] = randint(0, code.length);
+                x[1] = randint(0, code.length);
+                x[2] = randint(0, code.length);
+                x[3] = randint(0, code.length);
+            }
+            if (language == 0) {
+                s[0] = russian[x[0]];
+                s[1] = russian[x[1]];
+                s[2] = russian[x[2]];
+                s[3] = russian[x[3]];
+            } else {
+                s[0] = english[x[0]];
+                s[1] = english[x[1]];
+                s[2] = english[x[2]];
+                s[3] = english[x[3]];
+            }
+            c[0] = code[x[0]];
+            c[1] = code[x[1]];
+            c[2] = code[x[2]];
+            c[3] = code[x[3]];
+            a = randint(0, 4);
+        }
+        massiv.push(c[a]);
+
         canvas = document.getElementById('picture');
         canvas.src = "/flag-icon-css/flags/4x3/" + c[a] + ".svg";
         ans = s[a];
@@ -117,6 +149,7 @@ function Checker(check) {
         f[2] = s[2];
         f[3] = s[3];
     } else if (yes + no == 15) {
+        massiv = [];
         document.getElementById('true').innerHTML = "Верно: " + yes;
         document.getElementById('false').innerHTML = "Неверно: " + no;
         id[0] = document.getElementById('b0');
@@ -144,6 +177,7 @@ function Checker(check) {
         s[2] = "Заново";
         s[3] = "Заново";
     } else {
+        massiv=[];
         yes = 0; no = -1;
         Checker("start");
     }
@@ -159,4 +193,5 @@ function Checker(check) {
     sessionStorage.setItem('f', f);
     sessionStorage.setItem('aa', aa);
     sessionStorage.setItem('bb', bb);
+    sessionStorage.setItem('massiv', massiv);
 }
